@@ -4,24 +4,24 @@ import React, { useState } from 'react';
 const FAQSection = () => {
     const faqs = [
         {
-            question: "What is CPM, and how is it calculated?",
-            answer: "CPM stands for 'Cost Per Thousand' impressions. It is calculated by dividing the total cost of an advertising campaign by the number of impressions (in thousands) it generates."
+            question: "What is a DNS record?",
+            answer: "A DNS record is information stored in the Domain Name System (DNS) that provides details about a domain, such as its associated IP address, mail servers, and other configurations."
         },
         {
-            question: "What values do I need to input for the calculator to work?",
-            answer: "You need to enter two of the three values: Total Cost, CPM Rate, or Ad Impressions. The calculator will automatically calculate the third value for you."
+            question: "What types of DNS records can I check with this tool?",
+            answer: "You can check various DNS records such as A, AAAA, MX, NS, TXT, and SOA records. Each type serves a different purpose, like mapping a domain to an IP address or specifying mail servers for a domain."
         },
         {
-            question: "Why can’t I input values for all three fields?",
-            answer: "The CPM Calculator requires only two inputs to calculate the third. If you enter values in all three fields, it cannot determine which one to calculate and will give an error."
+            question: "Why do I need to check DNS records?",
+            answer: "Checking DNS records helps troubleshoot domain name resolution issues, verify correct domain configuration, and ensure that services like email or websites are set up correctly."
         },
         {
-            question: "What do I do if I get an error message?",
-            answer: "The error message occurs if you enter values in more than two fields. To fix this, clear one of the fields and enter values in only two fields for the calculation to work."
+            question: "How often should I check my DNS records?",
+            answer: "It’s a good practice to check DNS records when you make changes to your domain settings, migrate your website to a new host, or if you experience issues with domain resolution or service availability."
         },
         {
-            question: "Can I use decimal values for cost and CPM?",
-            answer: "Yes, both the Total Cost and CPM Rate can accept decimal values to provide more precise calculations. However, Ad Impressions must be entered as a whole number."
+            question: "What does it mean if no DNS records are found?",
+            answer: "If no DNS records are found, it could indicate that the domain is not properly configured, the domain does not exist, or there may be an issue with the DNS server. You may need to verify the domain name or contact your DNS provider."
         },
         
     ];
