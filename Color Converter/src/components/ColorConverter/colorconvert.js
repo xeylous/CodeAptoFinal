@@ -57,6 +57,8 @@ const ColorConverter = () => {
   };
 
   return (
+    <>
+    <h1 className="text-3xl font-bold text-center text-sky-300">Color Converter</h1>
     <div className="flex items-center justify-center h-screen p-5">
       <div className="flex flex-col items-center w-full max-w-lg">
         <div className="flex flex-col w-full mb-5">
@@ -131,6 +133,7 @@ const ColorConverter = () => {
         )}
       </div>
     </div>
+  </>
   );
 };
 
