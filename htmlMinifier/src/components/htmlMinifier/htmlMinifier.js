@@ -1,44 +1,46 @@
-'use client';
-import React, { useState } from 'react';
+"use client";
+import React, { useState } from "react";
 
 const HTMLMinifier = () => {
-  const [htmlInput, setHtmlInput] = useState('');
-  const [minifiedOutput, setMinifiedOutput] = useState('');
-  const [error, setError] = useState('');
+  const [htmlInput, setHtmlInput] = useState("");
+  const [minifiedOutput, setMinifiedOutput] = useState("");
+  const [error, setError] = useState("");
 
   const handleHtmlChange = (event) => {
     setHtmlInput(event.target.value);
-    setMinifiedOutput(''); // Clear previous output
-    setError('');
+    setMinifiedOutput(""); // Clear previous output
+    setError("");
   };
 
   const minifyHtml = () => {
     if (!htmlInput.trim()) {
-      setError('Please provide HTML input.');
+      setError("Please provide HTML input.");
       return;
     }
 
     try {
       // Simple HTML minification logic
       const minifiedHtml = htmlInput
-        .replace(/\s+/g, ' ') // Remove extra whitespace
-        .replace(/> </g, '><') // Remove whitespace between tags
-        .replace(/<!--[\s\S]*?-->/g, ''); // Remove comments
+        .replace(/\s+/g, " ") // Remove extra whitespace
+        .replace(/> </g, "><") // Remove whitespace between tags
+        .replace(/<!--[\s\S]*?-->/g, ""); // Remove comments
 
       setMinifiedOutput(minifiedHtml.trim());
-      setError('');
+      setError("");
     } catch (error) {
-      setError('Error in minifying HTML');
-      setMinifiedOutput('');
+      setError("Error in minifying HTML");
+      setMinifiedOutput("");
     }
   };
 
   const handleDownload = () => {
-    const blob = new Blob([minifiedOutput], { type: 'text/html;charset=utf-8' });
+    const blob = new Blob([minifiedOutput], {
+      type: "text/html;charset=utf-8",
+    });
     const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
+    const link = document.createElement("a");
     link.href = url;
-    link.download = 'minified.html';
+    link.download = "minified.html";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -53,27 +55,27 @@ const HTMLMinifier = () => {
       try {
         const content = e.target.result;
         setHtmlInput(content);
-        setMinifiedOutput(''); // Clear previous output
-        setError('');
+        setMinifiedOutput(""); // Clear previous output
+        setError("");
       } catch {
-        setError('Uploaded file is not a valid HTML.');
+        setError("Uploaded file is not a valid HTML.");
       }
     };
     reader.onerror = () => {
-      setError('Error reading the file.');
+      setError("Error reading the file.");
     };
     reader.readAsText(file);
   };
 
   const copyToClipboard = () => {
     navigator.clipboard.writeText(minifiedOutput);
-    alert('Copied to clipboard');
+    alert("Copied to clipboard");
   };
 
   const clearAll = () => {
-    setHtmlInput('');
-    setMinifiedOutput('');
-    setError('');
+    setHtmlInput("");
+    setMinifiedOutput("");
+    setError("");
   };
 
   return (
@@ -182,6 +184,15 @@ const HTMLMinifier = () => {
             flex: none;
             width: auto;
           }
+            
+            
+        }
+        .heading {
+            font-size: 2rem; /* 40px */
+            content-align: center;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #33ffff;
         }
 
         @media (min-width: 1024px) {
@@ -201,14 +212,14 @@ const HTMLMinifier = () => {
             color: #33ffff;
         }
       `}</style>
-      <h1 className='heading'>HTML Minifier</h1>
+      <h1 className="heading">HTML Minifier</h1>
       <div className="container">
         <div className="button-container">
           <label htmlFor="fileInput" className="button file-button">
             File
           </label>
           <input
-            type="file" 
+            type="file"
             accept=".html"
             onChange={handleFileUpload}
             className="file-input"
@@ -227,7 +238,7 @@ const HTMLMinifier = () => {
             Clear
           </button>
         </div>
-        
+
         <div className="grid-container">
           <div className="html-input">
             <h2>Paste your HTML here</h2>
@@ -237,18 +248,12 @@ const HTMLMinifier = () => {
               value={htmlInput}
               onChange={handleHtmlChange}
             />
-            {error && (
-              <p className="error">{error}</p>
-            )}
+            {error && <p className="error">{error}</p>}
           </div>
 
           <div className="minified-output">
             <h2>Minified HTML</h2>
-            <textarea
-              className="textarea"
-              value={minifiedOutput}
-              readOnly
-            />
+            <textarea className="textarea" value={minifiedOutput} readOnly />
           </div>
         </div>
       </div>
