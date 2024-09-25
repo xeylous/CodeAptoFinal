@@ -83,6 +83,16 @@ const Base64Encoder = () => {
           box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
+        .heading {
+            display: flex;
+            justify-content: center; /* Horizontally center */
+            align-items: center; /* Vertically center */
+            color: #99ccff;
+            height: 100%; /* Make sure it occupies full height if needed */
+            font-size: 2rem; /* Adjust font size as needed */
+            text-align: center; /* Ensure text is centered within the flexbox */
+          }
+            
         .button-container {
           display: flex;
           flex-wrap: wrap;
@@ -165,6 +175,16 @@ const Base64Encoder = () => {
         @media (min-width: 768px) {
           .grid-container {
             grid-template-columns: 1fr 1fr;
+          }
+
+          .heading {
+            display: flex;
+            justify-content: center; /* Horizontally center */
+            align-items: center; /* Vertically center */
+            color: #99ccff;
+            height: 100%; /* Make sure it occupies full height if needed */
+            font-size: 2rem; /* Adjust font size as needed */
+            text-align: center; /* Ensure text is centered within the flexbox */
           }
 
           .textarea {
