@@ -58,6 +58,13 @@ const UrlParser = () => {
           box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
+        .heading {
+          font-size: 2rem;
+          text-align: center;
+          color: #33ffff;
+          margin-bottom: 20px;
+        }
+          
         .button-container {
           display: flex;
           justify-content: center;
@@ -127,6 +134,13 @@ const UrlParser = () => {
         .error {
           color: #fc8181;
           margin-top: 10px;
+        }
+
+        .heading {
+          font-size: 2rem;
+          text-align: center;
+          color: #33ffff;
+          margin-bottom: 20px;
         }
 
         @media (min-width: 768px) {
