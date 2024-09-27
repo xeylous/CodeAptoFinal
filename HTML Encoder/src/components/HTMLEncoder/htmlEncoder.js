@@ -1,50 +1,48 @@
+
 'use client';
 import React, { useState } from 'react';
 
-// Function to encode HTML entities
-const encodeHTML = (html) => {
-  return html
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
+// Function to decode HTML entities
+const decodeHTML = (encodedHtml) => {
+  const element = document.createElement('div');
+  element.innerHTML = encodedHtml;
+  return element.textContent;
 };
 
-const HTMLEncoder = () => {
-  const [htmlInput, setHtmlInput] = useState('');
-  const [encodedOutput, setEncodedOutput] = useState('');
+const HTMLDecoder = () => {
+  const [encodedInput, setEncodedInput] = useState('');
+  const [decodedOutput, setDecodedOutput] = useState('');
   const [error, setError] = useState('');
 
-  const handleHtmlChange = (event) => {
-    setHtmlInput(event.target.value);
-    setEncodedOutput(''); // Clear previous output
+  const handleEncodedChange = (event) => {
+    setEncodedInput(event.target.value);
+    setDecodedOutput(''); // Clear previous output
     setError('');
   };
 
-  const encodeHtml = () => {
-    if (!htmlInput.trim()) {
-      setError('Please provide HTML input.');
+  const decodeHtml = () => {
+    if (!encodedInput.trim()) {
+      setError('Please provide encoded HTML input.');
       return;
     }
 
     try {
-      // Encode the HTML
-      const encodedHtml = encodeHTML(htmlInput);
-      setEncodedOutput(encodedHtml);
+      // Decode the HTML
+      const decodedHtml = decodeHTML(encodedInput);
+      setDecodedOutput(decodedHtml);
       setError('');
     } catch (error) {
-      setError('Error in encoding HTML');
-      setEncodedOutput('');
+      setError('Error in decoding HTML');
+      setDecodedOutput('');
     }
   };
 
   const handleDownload = () => {
-    const blob = new Blob([encodedOutput], { type: 'text/html;charset=utf-8' });
+    const blob = new Blob([decodedOutput], { type: 'text/html;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = 'encoded.html';
+    link.download = 'decoded.html';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -58,8 +56,8 @@ const HTMLEncoder = () => {
     reader.onload = (e) => {
       try {
         const content = e.target.result;
-        setHtmlInput(content);
-        setEncodedOutput(''); // Clear previous output
+        setEncodedInput(content);
+        setDecodedOutput(''); // Clear previous output
         setError('');
       } catch {
         setError('Uploaded file is not a valid HTML.');
@@ -72,13 +70,13 @@ const HTMLEncoder = () => {
   };
 
   const copyToClipboard = () => {
-    navigator.clipboard.writeText(encodedOutput);
+    navigator.clipboard.writeText(decodedOutput);
     alert('Copied to clipboard');
   };
 
   const clearAll = () => {
-    setHtmlInput('');
-    setEncodedOutput('');
+    setEncodedInput('');
+    setDecodedOutput('');
     setError('');
   };
 
@@ -97,7 +95,16 @@ const HTMLEncoder = () => {
 
         .explanation {
           margin-bottom: 20px;
+          allign-items: center;
+
         }
+
+        .heading {
+          font-size: 2rem;
+          margin-bottom: 10px;
+          display: flex;
+          justify-content: center;
+      }
 
         .button-container {
           display: flex;
@@ -125,7 +132,7 @@ const HTMLEncoder = () => {
           background-color: #4a5568;
         }
 
-        .encode-button {
+        .decode-button {
           background-color: #3182ce;
         }
 
@@ -147,7 +154,7 @@ const HTMLEncoder = () => {
           gap: 20px;
         }
 
-        .html-input, .encoded-output {
+        .encoded-input, .decoded-output {
           display: flex;
           flex-direction: column;
         }
@@ -207,13 +214,9 @@ const HTMLEncoder = () => {
 
       <div className="container">
         <div className="explanation">
-          <h2>Why do you need HTML encoding?</h2>
+          <h2 className='heading'>HTML Decoder</h2>
           <p>
-            HTML encoding replaces special characters in HTML such as <code>&lt;</code> and <code>&gt;</code> 
-            with reserved HTML entities that are recognized by the HTML engine. The most common cases of using HTML 
-            encoding are when you want to display HTML special characters as text in your HTML element content. 
-            For example, if you want to display <code>&lt;</code> within your <code>&lt;div&gt;</code> element, you need to 
-            encode (or escape) the <code>&lt;</code> character by replacing it with <code>&amp;lt;</code>.
+            This tool decodes HTML entities back to their original characters. Enter your encoded HTML below to get the original HTML content.
           </p>
         </div>
 
@@ -228,8 +231,8 @@ const HTMLEncoder = () => {
             className="file-input"
             id="fileInput"
           />
-          <button onClick={encodeHtml} className="button encode-button">
-            Encode HTML
+          <button onClick={decodeHtml} className="button decode-button">
+            Decode HTML
           </button>
           <button onClick={handleDownload} className="button download-button">
             Download
@@ -243,24 +246,24 @@ const HTMLEncoder = () => {
         </div>
         
         <div className="grid-container">
-          <div className="html-input">
-            <h2>Paste your HTML here</h2>
+          <div className="encoded-input">
+            <h2>Paste your encoded HTML here</h2>
             <textarea
               className="textarea"
-              placeholder="Paste your HTML code here"
-              value={htmlInput}
-              onChange={handleHtmlChange}
+              placeholder="Paste your encoded HTML code here"
+              value={encodedInput}
+              onChange={handleEncodedChange}
             />
             {error && (
               <p className="error">{error}</p>
             )}
           </div>
 
-          <div className="encoded-output">
-            <h2>Encoded HTML</h2>
+          <div className="decoded-output">
+            <h2>Decoded HTML</h2>
             <textarea
               className="textarea"
-              value={encodedOutput}
+              value={decodedOutput}
               readOnly
             />
           </div>
@@ -270,4 +273,4 @@ const HTMLEncoder = () => {
   );
 };
 
-export default HTMLEncoder;
+export default HTMLDecoder;
