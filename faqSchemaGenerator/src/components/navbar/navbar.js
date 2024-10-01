@@ -63,7 +63,7 @@ const Navbar = () => {
           <ul className="hidden md:flex flex-row space-x-4 items-center md:mr-20">
             <li>
               <Link
-                href="/home"
+                href="https://www.codeapto.com"
                 className="text-xl border border-transparent px-4 py-2 transition-all duration-300 ease-in-out hover:bg-gray-600 hover:border-white-500 hover:rounded-md"
               >
                 Home
@@ -71,15 +71,7 @@ const Navbar = () => {
             </li>
             <li>
               <Link
-                href="/pricing"
-                className="text-xl border border-transparent px-4 py-2 transition-all duration-300 ease-in-out hover:bg-gray-600 hover:border-white-500 hover:rounded-md"
-              >
-                Pricing
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/contact"
+                href="https://www.codeapto.com/contact"
                 className="text-xl border border-transparent px-4 py-2 transition-all duration-300 ease-in-out hover:bg-gray-600 hover:border-white-500 hover:rounded-md"
               >
                 Contact
@@ -102,7 +94,7 @@ const Navbar = () => {
           <ul className="space-y-4 mt-8">
             <li>
               <Link
-                href="/home"
+                href="https://www.codeapto.com"
                 className="text-white px-4 py-2 hover:bg-gray-600 hover:rounded-md"
               >
                 Home
@@ -110,15 +102,7 @@ const Navbar = () => {
             </li>
             <li>
               <Link
-                href="/pricing"
-                className="text-white px-4 py-2 hover:bg-gray-600 hover:rounded-md"
-              >
-                Pricing
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/contact"
+                href="https://www.codeapto.com/contact"
                 className="text-white px-4 py-2 hover:bg-gray-600 hover:rounded-md"
               >
                 Contact
